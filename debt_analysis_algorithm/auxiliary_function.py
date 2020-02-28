@@ -59,14 +59,10 @@ class Postgre:
 
 def load_model(path):
     """加载模型函数"""
-    model = joblib.load(path)
-    return model
-
-
-def dump_model(path, model):
-    """模型本地化函数"""
-    joblib.dump(model, path)
-    logger.info('Model Saved Successfully!')
+    if os.path.isfile(os.path.dirname(os.path.realpath(sys.executable)) + "/" + path):
+        return joblib.load(os.path.dirname(os.path.realpath(sys.executable)) + "/" + path)
+    else:
+        return joblib.load(sys.path[0] + "/" + path)
 
 
 # 查询方法

@@ -78,22 +78,22 @@ def main(argv):
 
     # 企业性质分析
     try:
-        if config_params['model_code'] is None or config_params['model_code'] == 'enterprise_nature':
+        if config_params['model_code'] is None or config_params['model_code'] == 'ENTERPRISE_NATURE_MODEL':
             logger.info('enterprise_nature_analysis start ...')
             enterprise_nature_analysis(config_params)
             logger.info('enterprise_nature_analysis end')
-            print('enterprise-nature-analysis-response-status-%s' % 200)
+            print('response-status-%s' % 200)
     except BaseException as be:
         print(be)
         logger.error(be)
 
     # 账户分类
     try:
-        if config_params['model_code'] is None or config_params['model_code'] == 'enterprise_nature':
+        if config_params['model_code'] is None or config_params['model_code'] == 'ACCOUNT_TYPE_MODEL':
             logger.info('account_type_analysis start ...')
             account_type_analysis(config_params)
             logger.info('account_type_analysis end')
-            print('account-type-analysis-response-status-%s' % 200)
+            print('response-status-%s' % 200)
     except BaseException as be:
         logger.error(be)
         print('account-type-analysis-response-status-%s' % 500)
