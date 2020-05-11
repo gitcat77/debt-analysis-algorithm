@@ -21,3 +21,6 @@ dev-ops.log
 
 # Windows
 Thumbs.db
+
+# IDEA
+.idea/
