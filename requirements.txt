@@ -1,3 +1,8 @@
+#python==3.6
+
 requests==2.19.1
 pandas==0.22.0
 scikit-learn==0.19.1
+psycopg2==2.8.4
+pymssql==2.1.4
+numpy=1.14.2
