@@ -112,6 +112,7 @@ def execute_sql(db_config, sql):
 
 # 插入方法
 def delete_by_sql(db_config, sql):
+    logger.info(sql)
     conn = psycopg2.connect(database=db_config['database'], user=db_config['user'],
                             password=base64.b64decode(db_config['password']).decode(),
                             host=db_config['host'], port=db_config['port'])
