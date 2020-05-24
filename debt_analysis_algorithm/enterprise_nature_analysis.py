@@ -70,7 +70,7 @@ def enterprise_nature_analysis(config_params):
         return
     delete_by_sql(config_params, "delete from %s where batch_no = %s"
                   % ((config_params['table'] or 'ar_enterprise_nature'), config_params['batch_no']))
-    for data_list in list_partition(enterprise_nature_list, 100):
+    for data_list in list_partition(enterprise_nature_list, 10):
         execute_sql(config_params, __get_batch_insert_sql(config_params['table'], config_params['batch_no'], data_list))
 
 

@@ -12,6 +12,7 @@ class Postgre:
 
     # 查询方法
     def select(self, sql):
+        logger.info(sql)
         conn = psycopg2.connect(database=self.db_config['database'], user=self.db_config['user'],
                                 password=base64.b64decode(self.db_config['password']).decode(),
                                 host=self.db_config['host'], port=self.db_config['port'])
@@ -36,6 +37,7 @@ class Postgre:
 
     # 插入方法
     def insert(self, sql):
+        logger.info(sql)
         conn = psycopg2.connect(database=self.db_config['database'], user=self.db_config['user'],
                                 password=base64.b64decode(self.db_config['password']).decode(),
                                 host=self.db_config['host'], port=self.db_config['port'])
@@ -67,6 +69,7 @@ def load_model(path):
 
 # 查询方法
 def panda_read_sql(db_config, sql):
+    logger.info(sql)
     conn = psycopg2.connect(database=db_config['database'], user=db_config['user'],
                             password=base64.b64decode(db_config['password']).decode(),
                             host=db_config['host'], port=db_config['port'])
@@ -85,6 +88,7 @@ def panda_read_sql(db_config, sql):
 
 # 插入方法
 def execute_sql(db_config, sql):
+    logger.info(sql)
     conn = psycopg2.connect(database=db_config['database'], user=db_config['user'],
                             password=base64.b64decode(db_config['password']).decode(),
                             host=db_config['host'], port=db_config['port'])
@@ -110,8 +114,9 @@ def execute_sql(db_config, sql):
             logger.error(be)
 
 
-# 插入方法
+# 删除方法
 def delete_by_sql(db_config, sql):
+    logger.info(sql)
     conn = psycopg2.connect(database=db_config['database'], user=db_config['user'],
                             password=base64.b64decode(db_config['password']).decode(),
                             host=db_config['host'], port=db_config['port'])
