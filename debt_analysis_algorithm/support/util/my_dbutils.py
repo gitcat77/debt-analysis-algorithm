@@ -4,6 +4,7 @@ import os
 import configparser
 import logging
 import psycopg2
+import base64
 
 from DBUtils.PooledDB import PooledDB
 
@@ -87,7 +88,7 @@ class DatabaseOperator(object):
         POSTGREPORT = self._database_config['db_port']
         POSTGREDB = self._database_config['database']
         POSTGREUSER = self._database_config['db_user']
-        POSTGREPASSWD = self._database_config['db_passwd']
+        POSTGREPASSWD = base64.b64decode(self._database_config['db_passwd']).decode()
         try:
             logging.info('Begin to create {0} postgresql pool on：{1}.\n'.format(POSTGREIP, datetime.datetime.now()))
 

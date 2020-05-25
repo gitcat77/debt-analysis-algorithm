@@ -6,7 +6,7 @@ from debt_analysis_algorithm.support.util.my_dbutils import DatabaseOperator
 
 
 # 企业性质分类预测
-def enterprise_classify(colname_values):
+def _enterprise_classify(colname_values):
     company_model = load_model('model_files/company_classify.pkl')
     result = company_model.predict(colname_values)
     return result
@@ -39,7 +39,7 @@ def __batch_company_result(config_params):
     # 获取模型计算所需数据
     model_data_list = trade_data_list[cols]
     # 获取计算结果
-    analysis_result_list = enterprise_classify(model_data_list)
+    analysis_result_list = _enterprise_classify(model_data_list)
 
     result_list = []
     for i in range(len(analysis_result_list)):
@@ -72,12 +72,17 @@ def enterprise_nature_analysis(config_params):
     delete_by_sql(config_params, "delete from %s where batch_no = %s"
                   % ((config_params['table'] or 'ar_enterprise_nature'), config_params['batch_no']))
 
-    db_config = {'database': 'debt-analysis', 'db_user': 'debt-analysis-algorithm', 'db_passwd': 'Bt701cF4D7f7Cyh$o', 'db_port': 5432, 'db_host': '47.116.106.157'}
+    db_config = {
+        'database': config_params['database'],
+        'db_user': config_params['user'],
+        'db_passwd': config_params['password'],
+        'db_port': config_params['port'],
+        'db_host': config_params['host']
+    }
     db = DatabaseOperator(database_config_path=None, database_config=db_config)
 
     for data_list in list_partition(enterprise_nature_list, 10):
         db.pg_insert_operator(__get_batch_insert_sql(config_params['table'], config_params['batch_no'], data_list))
-        # execute_sql(config_params, __get_batch_insert_sql(config_params['table'], config_params['batch_no'], data_list))
 
 
 def main():
