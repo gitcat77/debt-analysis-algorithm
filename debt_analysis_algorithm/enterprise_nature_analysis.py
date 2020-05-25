@@ -81,7 +81,7 @@ def enterprise_nature_analysis(config_params):
     }
     db = DatabaseOperator(database_config_path=None, database_config=db_config)
 
-    for data_list in list_partition(enterprise_nature_list, 10):
+    for data_list in list_partition(enterprise_nature_list, 100):
         db.pg_insert_operator(__get_batch_insert_sql(config_params['table'], config_params['batch_no'], data_list))
 
 

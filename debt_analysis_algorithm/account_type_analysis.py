@@ -2,6 +2,7 @@
 import time
 from debt_analysis_algorithm.auxiliary_function import *
 from debt_analysis_algorithm.support.util.list_utils import list_partition
+from debt_analysis_algorithm.support.util.my_dbutils import DatabaseOperator
 
 
 # 银行账户聚类
@@ -61,8 +62,17 @@ def account_type_analysis(config_params):
         return
     delete_by_sql(config_params, "delete from %s where batch_no = %s"
                   % ((config_params['table'] or 'ar_account_analysis_type'), config_params['batch_no']))
+    db_config = {
+        'database': config_params['database'],
+        'db_user': config_params['user'],
+        'db_passwd': config_params['password'],
+        'db_port': config_params['port'],
+        'db_host': config_params['host']
+    }
+    db = DatabaseOperator(database_config_path=None, database_config=db_config)
+
     for data_list in list_partition(enterprise_nature_list, 100):
-        execute_sql(config_params, __get_batch_insert_sql(config_params['table'], config_params['batch_no'], data_list))
+        db.pg_insert_operator(__get_batch_insert_sql(config_params['table'], config_params['batch_no'], data_list))
 
 
 def main():
