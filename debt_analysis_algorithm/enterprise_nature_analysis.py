@@ -2,6 +2,7 @@
 import time
 from debt_analysis_algorithm.auxiliary_function import *
 from debt_analysis_algorithm.support.util.list_utils import list_partition
+from debt_analysis_algorithm.support.util.my_dbutils import DatabaseOperator
 
 
 # 企业性质分类预测
@@ -70,8 +71,13 @@ def enterprise_nature_analysis(config_params):
         return
     delete_by_sql(config_params, "delete from %s where batch_no = %s"
                   % ((config_params['table'] or 'ar_enterprise_nature'), config_params['batch_no']))
+
+    db_config = {'database': 'debt-analysis', 'db_user': 'debt-analysis-algorithm', 'db_passwd': 'Bt701cF4D7f7Cyh$o', 'db_port': 5432, 'db_host': '47.116.106.157'}
+    db = DatabaseOperator(database_config_path=None, database_config=db_config)
+
     for data_list in list_partition(enterprise_nature_list, 10):
-        execute_sql(config_params, __get_batch_insert_sql(config_params['table'], config_params['batch_no'], data_list))
+        db.pg_insert_operator(__get_batch_insert_sql(config_params['table'], config_params['batch_no'], data_list))
+        # execute_sql(config_params, __get_batch_insert_sql(config_params['table'], config_params['batch_no'], data_list))
 
 
 def main():
