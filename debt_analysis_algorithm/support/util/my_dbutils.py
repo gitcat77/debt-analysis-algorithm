@@ -213,10 +213,15 @@ class DatabaseOperator(object):
             self._pool.close()
 
 
-if __name__ == '__main__':
+def main():
     # path = "C:\\Users\\user\\PycharmProjects\\debt-analysis-algorithm\\application.conf"
     # db = DatabaseOperator(database_config_path=path)
     # db.test_pool_con()
-    db_config = {'database': 'debt-analysis', 'db_user': 'debt-analysis-algorithm', 'db_passwd': 'Bt701cF4D7f7Cyh$o', 'db_port': 5432, 'db_host': '47.116.106.157'}
-    db = DatabaseOperator(database_config_path=None, database_config=db_config)
-    db.test_pool_con()
+    # db_config = {'database': '', 'db_user': '', 'db_passwd': '', 'db_port': '', 'db_host': ''}
+    # db = DatabaseOperator(database_config_path=None, database_config=db_config)
+    # db.test_pool_con()
+    pass
+
+
+if __name__ == '__main__':
+    main()
