@@ -9,6 +9,8 @@ from debt_analysis_algorithm.support.util.my_dbutils import DatabaseOperator
 def _enterprise_classify(colname_values):
     company_model = load_model('model_files/company_classify.pkl')
     result = company_model.predict(colname_values)
+    result[result == 0] = 3
+    result[result == 1] = 1
     return result
 
 
