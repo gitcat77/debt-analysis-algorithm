@@ -9,10 +9,13 @@ from debt_analysis_algorithm.support.util.my_dbutils import DatabaseOperator
 def __account_cluster(colname_values):
     account_model = load_model('model_files/kmeans_model.pkl')
     result = account_model.predict(colname_values)
+    result[result == 1] = 1
+    result[result == 2] = 1
+    result[result == 0] = 3
     return result
 
 
-# 企业性质批量数据结果返回函数
+# 银行账户性质批量数据结果返回函数
 def __batch_account_result(config_params):
     cols = ['transaction90_num', 'income90_num', 'ex90_num', 'interval_num']
 
