@@ -7,7 +7,7 @@ from debt_analysis_algorithm.support.util.my_dbutils import DatabaseOperator
 
 # 企业性质分类预测
 def _enterprise_classify(colname_values):
-    company_model = load_model('model_files/rf20200527.pkl')
+    company_model = load_model('model_files/rf20200528.pkl')
     result = company_model.predict(colname_values)
     # result[result == 0] = 3
     # result[result == 1] = 1
