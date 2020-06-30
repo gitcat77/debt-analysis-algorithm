@@ -1,20 +1,25 @@
 # -*- coding: UTF-8 -*-
 
 import time
+
 from sklearn.externals import joblib
 from debt_analysis_algorithm.auxiliary_function import *
+from debt_analysis_algorithm.support.util.list_utils import list_partition
+from debt_analysis_algorithm.support.util.my_dbutils import DatabaseOperator
+
 
 # 企业债务评分
-def _conpany_risk_score(normal_data):
+def _company_risk_score(normal_data):
     fa_company = load_model('model_files/fa_company.pkl')
-    fa_area.fit(normal_data)
-    weight=fa_company.get_factor_variance()[1]
-    factor_score =fa_company.transform(normal_data)
-    score=(np.dot(factor_score,weight)/weight.sum()).real
-    result=max_min_normalization(score)*100
+    fa_company.fit(normal_data)
+    weight = fa_company.get_factor_variance()[1]
+    factor_score = fa_company.transform(normal_data)
+    score = (np.dot(factor_score, weight)/weight.sum()).real
+    result = max_min_normalization(score)*100
     # result[result == 0] = 3
     # result[result == 1] = 1
     return result
+
 
 # 企业债务评分数据结果返回函数
 def __batch_enterprise_base_info(config_params):
@@ -50,10 +55,10 @@ def __batch_enterprise_base_info(config_params):
     model_data_list = trade_data_list[cols]
 
     # 数据标准化
-    model_data_list[forward]= max_min_normalization(model_data_list[forward])
-    model_data_list[backward]=min_max_normalization(model_data_list[backward])
+    model_data_list[forward] = max_min_normalization(model_data_list[forward])
+    model_data_list[backward] = min_max_normalization(model_data_list[backward])
 
-    normal_data=model_data_list
+    normal_data = model_data_list
 
     # 获取计算结果
     analysis_result_list = _company_risk_score(normal_data)
@@ -68,7 +73,6 @@ def __batch_enterprise_base_info(config_params):
         })
 
     return result_list
-
 
 
 def __get_batch_insert_sql(table_name, batch_no, enterprise_nature_list):
@@ -99,7 +103,7 @@ def enterprise_debt_risk_score(config_params):
     }
     db = DatabaseOperator(database_config_path=None, database_config=db_config)
 
-    for data_list in list_partition(enterprise_nature_list, 100):
+    for data_list in list_partition(enterprise_base_info_list, 100):
         db.pg_insert_operator(__get_batch_insert_sql(config_params['table'], config_params['batch_no'], data_list))
 
 
