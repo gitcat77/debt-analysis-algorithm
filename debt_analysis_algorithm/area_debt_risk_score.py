@@ -22,7 +22,7 @@ def _area_risk_score(normal_data):
 
 # 获取地区债务风险基础信息
 def __batch_area_base_info(config_params):
-    cols = ['government_sex_debt_ratio', 'government_debt_ratio', 'implicit_deb_tratio', 'all_debt_service_ratio',
+    cols = ['government_sex_debt_ratio', 'government_debt_ratio', 'implicit_debt_ratio', 'all_debt_service_ratio',
             'implicit_debt_service_ratio', 'government_debt_service_ratio', 'concerned_debt_service_ratio',
             'operational_debt_service_ratio', 'all_interest_expense_ratio', 'implicit_debt_interest_expense_ratio',
             'government_debt_interest_expense_ratio', 'concerned_debt_interest_expenseratio',
