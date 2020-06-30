@@ -113,7 +113,7 @@ def __get_batch_insert_sql(table_name, batch_no, enterprise_nature_list):
     return batch_insert_sql[:-1] + " returning id"
 
 
-def enterprise_debt_risk_score(config_params):
+def enterprise_nature_analysis(config_params):
     enterprise_nature_list = __batch_company_result(config_params)
     if enterprise_nature_list is None:
         return
