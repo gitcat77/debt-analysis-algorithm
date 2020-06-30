@@ -8,6 +8,7 @@ from datetime import timedelta, datetime
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../')
 
 from debt_analysis_algorithm.account_type_analysis import *
+from debt_analysis_algorithm.enterprise_nature_analysis import *
 from debt_analysis_algorithm.enterprise_debt_risk_score import *
 from debt_analysis_algorithm.area_debt_risk_score import *
 
@@ -119,7 +120,7 @@ def main(argv):
             print('response-status-%s' % 200)
     except BaseException as be:
         logger.error(be)
-        print('account-type-analysis-response-status-%s' % 500)
+        print('enterprise-debt-risk-score-response-status-%s' % 500)
 
 
 if __name__ == '__main__':

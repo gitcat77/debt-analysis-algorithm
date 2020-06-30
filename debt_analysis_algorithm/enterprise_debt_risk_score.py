@@ -8,6 +8,7 @@ from debt_analysis_algorithm.auxiliary_function import *
 from debt_analysis_algorithm.support.util.list_utils import list_partition
 from debt_analysis_algorithm.support.util.my_dbutils import DatabaseOperator
 
+
 # 企业债务评分
 def _company_risk_score(normal_data):
     fa_company = load_model('model_files/fa_company.pkl')
@@ -19,6 +20,7 @@ def _company_risk_score(normal_data):
     # result[result == 0] = 3
     # result[result == 1] = 1
     return result
+
 
 # 企业债务评分数据结果返回函数
 def __batch_enterprise_base_info(config_params):
@@ -72,7 +74,6 @@ def __batch_enterprise_base_info(config_params):
         })
 
     return result_list
-
 
 
 def __get_batch_insert_sql(table_name, batch_no, enterprise_nature_list):
