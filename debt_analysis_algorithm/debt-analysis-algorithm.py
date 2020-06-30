@@ -9,6 +9,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../')
 
 from debt_analysis_algorithm.account_type_analysis import *
 from debt_analysis_algorithm.enterprise_nature_analysis import *
+from debt_analysis_algorithm.area_debt_risk_score import *
 
 
 # 处理用户输入命令
@@ -97,6 +98,28 @@ def main(argv):
     except BaseException as be:
         logger.error(be)
         print('account-type-analysis-response-status-%s' % 500)
+
+    # 区域债务风险评分
+    try:
+        if config_params['model_code'] is None or config_params['model_code'] == 'AREA_DEBT_RISK_SCORE':
+            logger.info('area_debt_risk_score start ...')
+            area_debt_risk_score(config_params)
+            logger.info('area_debt_risk_score end')
+            print('response-status-%s' % 200)
+    except BaseException as be:
+        logger.error(be)
+        print('area-debt-risk-score-response-status-%s' % 500)
+
+    # # 企业债务风险评分
+    # try:
+    #     if config_params['model_code'] is None or config_params['model_code'] == 'ENTERPRISE_DEBT_RISK_SCORE':
+    #         logger.info('enterprise_debt_risk_score start ...')
+    #         enterprise_debt_risk_score(config_params)
+    #         logger.info('enterprise_debt_risk_score end')
+    #         print('response-status-%s' % 200)
+    # except BaseException as be:
+    #     logger.error(be)
+    #     print('account-type-analysis-response-status-%s' % 500)
 
 
 if __name__ == '__main__':

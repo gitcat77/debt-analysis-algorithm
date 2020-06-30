@@ -3,6 +3,7 @@ from sklearn.externals import joblib
 import psycopg2
 import pandas as pd
 import base64
+import numpy as np
 from debt_analysis_algorithm.common import *
 
 
@@ -139,6 +140,20 @@ def delete_by_sql(db_config, sql):
             conn.close()
         except BaseException as be:
             logger.error(be)
+
+
+# 数据[0,1]标准化
+def max_min_normalization(x):
+    """[0,1]normalization"""
+    x = (x-np.min(x)) / (np.max(x)-np.min(x))
+    return x
+
+
+# 数据[0,1]反向标准化
+def min_max_normalization(x):
+    """[0,1]normalization"""
+    x = (np.max(x)-x) / (np.max(x)-np.min(x))
+    return x
 
 
 def main():
