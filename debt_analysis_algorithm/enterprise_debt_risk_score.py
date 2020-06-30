@@ -1,16 +1,20 @@
 # -*- coding: UTF-8 -*-
 
 import time
-from sklearn.externals import joblib
+# from debt_analysis_algorithm.support.util.my_dbutils import DatabaseOperator
+# from debt_analysis_algorithm.auxiliary_function import *
+
 from debt_analysis_algorithm.auxiliary_function import *
+from debt_analysis_algorithm.support.util.list_utils import list_partition
+from debt_analysis_algorithm.support.util.my_dbutils import DatabaseOperator
 
 # 企业债务评分
-def _conpany_risk_score(normal_data):
+def _company_risk_score(normal_data):
     fa_company = load_model('model_files/fa_company.pkl')
-    fa_area.fit(normal_data)
+    fa_company.fit(normal_data)
     weight=fa_company.get_factor_variance()[1]
     factor_score =fa_company.transform(normal_data)
-    score=(np.dot(factor_score,weight)/weight.sum()).real
+    score=(np.dot(factor_score, weight)/weight.sum()).real
     result=max_min_normalization(score)*100
     # result[result == 0] = 3
     # result[result == 1] = 1
@@ -97,9 +101,10 @@ def enterprise_debt_risk_score(config_params):
         'db_port': config_params['port'],
         'db_host': config_params['host']
     }
+
     db = DatabaseOperator(database_config_path=None, database_config=db_config)
 
-    for data_list in list_partition(enterprise_nature_list, 100):
+    for data_list in list_partition(enterprise_base_info_list, 100):
         db.pg_insert_operator(__get_batch_insert_sql(config_params['table'], config_params['batch_no'], data_list))
 
 
