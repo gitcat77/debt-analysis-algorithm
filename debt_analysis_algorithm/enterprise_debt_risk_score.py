@@ -24,20 +24,20 @@ def _company_risk_score(normal_data):
 
 # 企业债务评分数据结果返回函数
 def __batch_enterprise_base_info(config_params):
-    cols = ['sum_finance_money','sum_debt_balance','sum_operational_debt_finance_money','sum_implicit_debt_finance_money',
-            'sum_operational_debt_debt_balance','sum_implicit_debt_debt_balance','sum_create_audit_finance_money',
-            'sum_create_audit_debt_balance','sum_stock_debt_finance_money','sum_direct_finance_finance_money',
-            'sum_others_finance_money','sum_direct_finance_debt_balance','sum_others_debt_balance','sum_withdraw_money',
+    cols = ['sum_finance_money','sum_debt_balance','sum_implicit_debt_finance_money',
+            'sum_implicit_debt_debt_balance','sum_create_audit_finance_money',
+            'sum_create_audit_debt_balance','sum_stock_debt_finance_money',
+            'sum_others_finance_money','sum_others_debt_balance','sum_withdraw_money',
             'current_assets_year_end_balance','current_assets_year_start_balance','not_current_assets_year_end_balance',
             'not_current_assets_year_start_balance','assets_total_year_end_balance','assets_total_year_start_balance',
             'liabilities_total_year_end_balance','liabilities_total_year_start_balance','total_owners_equity_year_end_balance',
             'total_liabilities_owners_equity_year_end_balance','total_liabilities_owners_equity_year_start_balance',
             'sum_account_balance_normal','sum_available_balance_normal','capital']
 
-    forward = ['sum_finance_money','sum_debt_balance','sum_operational_debt_finance_money','sum_implicit_debt_finance_money',
-            'sum_operational_debt_debt_balance','sum_implicit_debt_debt_balance','sum_create_audit_finance_money',
-            'sum_create_audit_debt_balance','sum_stock_debt_finance_money','sum_direct_finance_finance_money',
-            'sum_others_finance_money','sum_direct_finance_debt_balance','sum_others_debt_balance','sum_withdraw_money',
+    forward = ['sum_finance_money','sum_debt_balance','sum_implicit_debt_finance_money',
+            'sum_implicit_debt_debt_balance','sum_create_audit_finance_money',
+            'sum_create_audit_debt_balance','sum_stock_debt_finance_money',
+            'sum_others_finance_money','sum_others_debt_balance','sum_withdraw_money',
             'liabilities_total_year_end_balance','liabilities_total_year_start_balance']
     backward = ['current_assets_year_end_balance','current_assets_year_start_balance','not_current_assets_year_end_balance',
                 'not_current_assets_year_start_balance', 'assets_total_year_end_balance','assets_total_year_start_balance',
