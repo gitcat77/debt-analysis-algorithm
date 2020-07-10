@@ -47,11 +47,11 @@ def __batch_enterprise_base_info(config_params):
 
     trade_select_sql = '''select *
                         from  ds_company_debt_risk_base_info
-                        where batch_no = %s \
+                        where company_id not in ('A342B28A-8693-4F4A-B695-4A03BB4C433B','6D991C73-B83A-4130-8E24-FAECBA40569E','6D4A9995-2099-46A8-9A22-323AC6F7658F') and batch_no = %s \
                         order by id
                         ''' % config_params['batch_no']
     # 获取交易数据
-    trade_data_list = panda_read_sql(config_params, trade_select_sql)
+    trade_data_list = panda_read_sql(c onfig_params, trade_select_sql)
     # 获取模型计算所需数据
     model_data_list = trade_data_list[cols]
 
