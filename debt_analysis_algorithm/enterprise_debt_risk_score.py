@@ -24,30 +24,33 @@ def _company_risk_score(normal_data):
 
 # 企业债务评分数据结果返回函数
 def __batch_enterprise_base_info(config_params):
-    cols = ['sum_finance_money','sum_debt_balance','sum_implicit_debt_finance_money',
-            'sum_implicit_debt_debt_balance','sum_create_audit_finance_money',
-            'sum_create_audit_debt_balance','sum_stock_debt_finance_money',
-            'sum_others_finance_money','sum_others_debt_balance','sum_withdraw_money',
-            'current_assets_year_end_balance','current_assets_year_start_balance','not_current_assets_year_end_balance',
-            'not_current_assets_year_start_balance','assets_total_year_end_balance','assets_total_year_start_balance',
-            'liabilities_total_year_end_balance','liabilities_total_year_start_balance','total_owners_equity_year_end_balance',
-            'total_liabilities_owners_equity_year_end_balance','total_liabilities_owners_equity_year_start_balance',
-            'sum_account_balance_normal','sum_available_balance_normal','capital']
+    cols = ['sum_finance_money','sum_debt_balance','sum_implicit_debt_finance_money','sum_implicit_debt_debt_balance',
+            'sum_extend_audit_finance_money',
+            'sum_extend_audit_debt_balance',
+            'sum_replacement_debt_finance_money',
+            'sum_replacement_debt_debt_balance','sum_withdraw_money','count_warn','count_overdue',
+            'current_ratio_year_end_balance','current_ratio_year_start_balance','equity_debt_ratio_year_end_balance',
+            'equity_debt_ratio_year_start_balance','current_assets_liabilities_total_ratio_year_end_balance',
+            'current_assets_liabilities_total_ratio_year_start_balance',
+            'operating_assets_total_assets_ratio_year_end_balance','operating_assets_total_assets_ratio_year_start_balance',
+            'asset_liability_ratio_year_end_balance','asset_liability_ratio_year_start_balance']
 
-    forward = ['sum_finance_money','sum_debt_balance','sum_implicit_debt_finance_money',
-            'sum_implicit_debt_debt_balance','sum_create_audit_finance_money',
-            'sum_create_audit_debt_balance','sum_stock_debt_finance_money',
-            'sum_others_finance_money','sum_others_debt_balance','sum_withdraw_money',
-            'liabilities_total_year_end_balance','liabilities_total_year_start_balance']
-    backward = ['current_assets_year_end_balance','current_assets_year_start_balance','not_current_assets_year_end_balance',
-                'not_current_assets_year_start_balance', 'assets_total_year_end_balance','assets_total_year_start_balance',
-                'total_owners_equity_year_end_balance','total_liabilities_owners_equity_year_end_balance',
-                'total_liabilities_owners_equity_year_start_balance',
-                'sum_account_balance_normal','sum_available_balance_normal','capital']
+    forward = ['sum_finance_money','sum_debt_balance','sum_implicit_debt_finance_money','sum_implicit_debt_debt_balance',
+            'sum_extend_audit_finance_money',
+            'sum_extend_audit_debt_balance',
+            'sum_replacement_debt_finance_money',
+            'sum_replacement_debt_debt_balance','sum_withdraw_money','count_warn','count_overdue',
+            'asset_liability_ratio_year_end_balance','asset_liability_ratio_year_start_balance',
+            'equity_debt_ratio_year_end_balance','equity_debt_ratio_year_start_balance']
+    backward = ['current_ratio_year_end_balance','current_ratio_year_start_balance',
+            'current_assets_liabilities_total_ratio_year_end_balance',
+            'current_assets_liabilities_total_ratio_year_start_balance',
+            'operating_assets_total_assets_ratio_year_end_balance',
+            'operating_assets_total_assets_ratio_year_start_balance']
 
     trade_select_sql = '''select *
                         from  ds_company_debt_risk_base_info
-                        where company_id not in ('A342B28A-8693-4F4A-B695-4A03BB4C433B','6D991C73-B83A-4130-8E24-FAECBA40569E','6D4A9995-2099-46A8-9A22-323AC6F7658F') and batch_no = %s \
+                        where batch_no = %s \
                         order by id
                         ''' % config_params['batch_no']
     # 获取交易数据
