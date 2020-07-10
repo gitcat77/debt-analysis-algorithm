@@ -54,7 +54,7 @@ def __batch_enterprise_base_info(config_params):
                         order by id
                         ''' % config_params['batch_no']
     # 获取交易数据
-    trade_data_list = panda_read_sql(c onfig_params, trade_select_sql)
+    trade_data_list = panda_read_sql(config_params, trade_select_sql)
     # 获取模型计算所需数据
     model_data_list = trade_data_list[cols]
 
