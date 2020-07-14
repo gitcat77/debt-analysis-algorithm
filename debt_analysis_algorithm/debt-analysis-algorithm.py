@@ -112,15 +112,15 @@ def main(argv):
         print('area-debt-risk-score-response-status-%s' % 500)
 
     # 企业债务风险评分
-    try:
-        if config_params['model_code'] is None or config_params['model_code'] == 'ENTERPRISE_DEBT_RISK_SCORE':
-            logger.info('enterprise_debt_risk_score start ...')
-            enterprise_debt_risk_score(config_params)
-            logger.info('enterprise_debt_risk_score end')
-            print('response-status-%s' % 200)
-    except BaseException as be:
-        logger.error(be)
-        print('enterprise-debt-risk-score-response-status-%s' % 500)
+    # try:
+    #     if config_params['model_code'] is None or config_params['model_code'] == 'ENTERPRISE_DEBT_RISK_SCORE':
+    #         logger.info('enterprise_debt_risk_score start ...')
+    #         enterprise_debt_risk_score(config_params)
+    #         logger.info('enterprise_debt_risk_score end')
+    #         print('response-status-%s' % 200)
+    # except BaseException as be:
+    #     logger.error(be)
+    #     print('enterprise-debt-risk-score-response-status-%s' % 500)
 
 
 if __name__ == '__main__':
