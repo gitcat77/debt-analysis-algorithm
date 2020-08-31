@@ -26,10 +26,9 @@ def __batch_area_base_info(config_params):
             'implicit_debt_service_ratio', 'government_debt_service_ratio', 'concerned_debt_service_ratio',
             'operational_debt_service_ratio','all_interest_expense_ratio', 'implicit_debt_interest_expense_ratio',
             'government_debt_interest_expense_ratio', 'concerned_debt_interest_expenseratio',
-            'operational_debt_interest_expenseratio','implicit_debt_get_new_to_old_ratio',
-            'area_synthetical_money','all_statistics_debt_balance', 'government_statistics_debt_balance', 'implicit_statistics_debt_balance',
-            'concerned_statistics_debt_balance', 'operational_statistics_debt_balance','shell_company','entity_company','enterprise_debt_risk']
-    backward = ['area_synthetical_money']
+            'operational_debt_interest_expenseratio','implicit_debt_get_new_to_old_ratio'
+            ]
+
 
 
 
@@ -45,7 +44,7 @@ def __batch_area_base_info(config_params):
 
     # 数据标准化
     normal_data = max_min_normalization(model_data_list)
-    normal_data[backward]= min_max_normalization(normal_data[backward])
+
 
 
     # 获取计算结果
