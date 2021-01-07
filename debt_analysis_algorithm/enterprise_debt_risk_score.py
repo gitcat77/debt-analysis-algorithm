@@ -29,24 +29,22 @@ def __batch_enterprise_base_info(config_params):
             'sum_extend_audit_debt_balance',
             'sum_replacement_debt_finance_money',
             'sum_replacement_debt_debt_balance','sum_withdraw_money','count_warn','count_overdue',
-            'current_ratio_year_end_balance','current_ratio_year_start_balance','equity_debt_ratio_year_end_balance',
-            'equity_debt_ratio_year_start_balance','current_assets_liabilities_total_ratio_year_end_balance',
-            'current_assets_liabilities_total_ratio_year_start_balance',
-            'operating_assets_total_assets_ratio_year_end_balance','operating_assets_total_assets_ratio_year_start_balance',
-            'asset_liability_ratio_year_end_balance','asset_liability_ratio_year_start_balance']
+            'current_ratio_year_end_balance','equity_debt_ratio_year_end_balance',
+            'current_assets_liabilities_total_ratio_year_end_balance',
+            'operating_assets_total_assets_ratio_year_end_balance',
+            'asset_liability_ratio_year_end_balance']
 
     forward = ['sum_finance_money','sum_debt_balance','sum_implicit_debt_finance_money','sum_implicit_debt_debt_balance',
             'sum_extend_audit_finance_money',
             'sum_extend_audit_debt_balance',
             'sum_replacement_debt_finance_money',
             'sum_replacement_debt_debt_balance','sum_withdraw_money','count_warn','count_overdue',
-            'asset_liability_ratio_year_end_balance','asset_liability_ratio_year_start_balance',
-            'equity_debt_ratio_year_end_balance','equity_debt_ratio_year_start_balance']
-    backward = ['current_ratio_year_end_balance','current_ratio_year_start_balance',
+            'asset_liability_ratio_year_end_balance',
+            'equity_debt_ratio_year_end_balance']
+    backward = ['current_ratio_year_end_balance',
             'current_assets_liabilities_total_ratio_year_end_balance',
-            'current_assets_liabilities_total_ratio_year_start_balance',
             'operating_assets_total_assets_ratio_year_end_balance',
-            'operating_assets_total_assets_ratio_year_start_balance']
+            ]
 
     trade_select_sql = '''select *
                         from  ds_company_debt_risk_base_info

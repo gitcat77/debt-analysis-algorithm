@@ -145,6 +145,7 @@ def delete_by_sql(db_config, sql):
 # 数据[0,1]标准化
 def max_min_normalization(x):
     """[0,1]normalization"""
+
     x = (x-np.min(x)) / (np.max(x)-np.min(x))
     return x
 
